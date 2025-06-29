@@ -3,6 +3,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+plan.txt
+
 # C extensions
 *.so
 
