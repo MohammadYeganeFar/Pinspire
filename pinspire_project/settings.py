@@ -10,12 +10,13 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     # 'django.contrib.admin', # Not using Django Admin with raw SQL
-    # 'django.contrib.auth', # Not using Django's Auth system directly, but hashers are used
+    'django.contrib.auth', # Not using Django's Auth system directly, but hashers are used
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
+    'account.apps.AccountConfig',
 ]
 
 MIDDLEWARE = [
