@@ -1,4 +1,5 @@
 import os
+import decouple
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -54,12 +55,12 @@ WSGI_APPLICATION = 'pinspire_project.wsgi.application'
 # Our raw SQL utilities will use environment variables directly.
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Just for Django's internal checks, not used by our raw SQL
-        'NAME': os.environ.get('DB_NAME', 'pinspire_db'),
-        'USER': os.environ.get('DB_USER', 'pinspire_user'),
-        'PASSWORD': os.environ.get('DB_PASSWORD', 'pinspire_password'),
-        'HOST': os.environ.get('DB_HOST', 'localhost'),
-        'PORT': os.environ.get('DB_PORT', '5432'),
+        'ENGINE': 'django.db.backends.postgresql', # Just for Django's internal checks, not used by our raw SQL
+        'NAME': decouple.config('DB_NAME', 'pinspire_db'),
+        'USER': decouple.config('DB_USER', 'pinspire_user'),
+        'PASSWORD': decouple.config('DB_PASSWORD', 'pinspire_password'),
+        'HOST': decouple.config('DB_HOST', 'localhost'),
+        'PORT': decouple.config('DB_PORT', '5432'),
     }
 }
 
