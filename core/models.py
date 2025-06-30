@@ -25,4 +25,4 @@ class Board(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
     visibility = models.CharField(max_length=2, choices=visibility_choices)
-    
+    pins = models.ManyToManyField(Pin, related_name='boards')
