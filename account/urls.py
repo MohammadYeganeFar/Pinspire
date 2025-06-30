@@ -4,7 +4,7 @@ from account.views import CustomUserViewSet
 
 
 router = DefaultRouter()
-router.register(r'auth', CustomUserViewSet, 'users')
+router.register(r'users', CustomUserViewSet, 'users')
 
 urlpatterns = [
     path('', include(router.urls))
