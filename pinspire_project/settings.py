@@ -26,10 +26,10 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware', # Keep for POST requests, but views are @csrf_exempt
-    # 'django.contrib.auth.middleware.AuthenticationMiddleware', # Not using Django's Auth system
+    'django.contrib.auth.middleware.AuthenticationMiddleware', # Not using Django's Auth system
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'core.middlewares.JWTAuthenticationMiddleware', # Our custom JWT middleware
+    # 'core.middlewares.JWTAuthenticationMiddleware', # Our custom JWT middleware
 ]
 
 ROOT_URLCONF = 'pinspire_project.urls'
