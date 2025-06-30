@@ -10,6 +10,7 @@ class Like(models.Model):
     
 
 class Comment(models.Model):
+    text = models.TextField()
     pin = models.ForeignKey(Pin, on_delete=models.CASCADE, related_name='comments')
     owner = owner = models.ForeignKey(CustomUser,
                             on_delete=models.CASCADE, related_name='comments')
