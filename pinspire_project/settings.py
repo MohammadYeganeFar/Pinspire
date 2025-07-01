@@ -1,5 +1,6 @@
 import os
 import decouple
+from datetime import timedelta
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -80,6 +81,17 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+REST_FRAMEWORK = {
+    'DAFAULT_AUTHENTICATION_CLASSES': 
+        ('rest_framework_simplejwt.authentication.JWTAuthenticate'),
+    
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+}
 
 LANGUAGE_CODE = 'en-us'
 
