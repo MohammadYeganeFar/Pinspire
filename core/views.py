@@ -18,3 +18,9 @@ class PinViewSet(viewsets.ModelViewSet):
 class BoardViewSet(viewsets.ModelViewSet):
     serializer_class = BoardSerializer
     queryset = Board.objects.all()
+    
+    def list(self, request):
+        boards = Board.objects.filter(visibility='PU')
+        serializer = self.get_serializer(boards, many=True)
+        return Response(serializer.data)
+        
