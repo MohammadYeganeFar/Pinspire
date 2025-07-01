@@ -16,5 +16,8 @@
 - لاگین با جی دابلیو تی رو میز
 	م اخر چون احتمالا نیاز به نصب . کشتی گرفتن با پست من داره
 
+اسم یو ار ال هارم همونجا عوض میکنم.اسونه
+
 `/api/auth/register/`:
 same as /api/users/. its need some change...
+its working. hashing pw ok(using overwriting serilsizer.create()). adding following. 
