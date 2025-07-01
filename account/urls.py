@@ -7,5 +7,10 @@ router = DefaultRouter()
 router.register(r'users', CustomUserViewSet, 'users')
 
 urlpatterns = [
+    path('auth/register/', CustomUserViewSet.as_view(
+        {
+            'post': 'create'
+        }
+    )),
     path('', include(router.urls))
 ]
