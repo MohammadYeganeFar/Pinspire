@@ -37,9 +37,15 @@ def add_pin_to_board(request, pk):
         return Response(serializer.data)
     
     elif request.method == 'POST':
-        print('request.data', request.data)
+        print('request.data: ', type(request.data.get('pins')))
         serializer = AddPinToBoardSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        obj = serializer.save()
-        print(obj)
+        pin_id = request.data.get('pins')
+        try:
+            pin = Pin.objects.get(pk=pin_id)
+        except Pin.Exception.ObjectDoesNotExist:
+            print('in exc')
+            return Response({'error': f'Pin with id {pin_id} not Found'})
+        board.pins.add(pin)
+        serializer = BoardSerializer(board)
         return Response(serializer.data, status.HTTP_201_CREATED)
