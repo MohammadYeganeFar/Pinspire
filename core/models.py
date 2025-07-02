@@ -1,4 +1,5 @@
 from django.db import models
+from account.models import CustomUser
 
 
 class Pin(models.Model):
@@ -26,3 +27,4 @@ class Board(models.Model):
     description = models.TextField(null=True, blank=True)
     visibility = models.CharField(max_length=2, choices=visibility_choices)
     pins = models.ManyToManyField(Pin, related_name='boards')
+    owner = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
