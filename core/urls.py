@@ -8,6 +8,11 @@ router.register(r'pins', PinViewSet, 'pin')
 router.register(r'boards', BoardViewSet, 'board')
 
 urlpatterns = [
+    path('wishlist/', BoardViewSet.as_view(
+        {
+            'get': 'wishlist',
+        }
+    )),
     path('boards/<int:pk>/pins/', add_pin_to_board),
     path('', include(router.urls)),
 ]

@@ -7,6 +7,7 @@ from core.models import Pin, Board
 from core.serializers import (PinSerializer, 
                                                 BoardSerializer, 
                                                 AddPinToBoardSerializer)
+from account.models import CustomUser
 
 class PinViewSet(viewsets.ModelViewSet):
     serializer_class = PinSerializer
@@ -16,9 +17,8 @@ class PinViewSet(viewsets.ModelViewSet):
         pins = Pin.objects.filter(visibility='PU')
         serializer = self.get_serializer(pins, many=True)
         return Response(serializer.data)
-        
-
-
+       
+    
 class BoardViewSet(viewsets.ModelViewSet):
     serializer_class = BoardSerializer
     queryset = Board.objects.all()
@@ -27,7 +27,31 @@ class BoardViewSet(viewsets.ModelViewSet):
         boards = Board.objects.filter(visibility='PU')
         serializer = self.get_serializer(boards, many=True)
         return Response(serializer.data)
-
+    
+    def create(self, request):
+        # checking uniquness of user boards names
+        #user = request.user 
+        user = CustomUser.objects.get(username='user20')# just for test
+        board_name = request.data.get('name')
+        print('\n1hiii')
+        if Board.objects.filter(name=board_name, owner=user).exists():
+            print('\n2hiii')
+            return Response({'error': f'Board with name {board_name} already exist. USE THAT!'})
+        print('\n3hiii')
+        return super().create(self, request)
+    
+    def wishlist(self, request):
+        #user = request.user 
+        user = CustomUser.objects.get(username='user20')# just for test
+        try:
+            user_wishlist = Board.objects.get(name='wishlist', owner=user)
+            # user_wishlist = Board.objects.get_user_wishlist(user=user)
+        except Board.DoesNotExist:
+            return Response({'message': 'You dont have a wishlist.'})
+        pins = user_wishlist.pins.all()
+        serializer = PinSerializer(pins, many=True)
+        return Response(serializer.data)
+    
 @api_view(['GET', 'POST'])
 def add_pin_to_board(request, pk):
     board = Board.objects.get(pk=pk)
@@ -45,3 +69,7 @@ def add_pin_to_board(request, pk):
         serializer = BoardSerializer(board)
         return Response(serializer.data, status.HTTP_201_CREATED)
         
+
+#@api_view(['POST', 'DELETE'])
+#def edit_wishlist(request, pin_id):
+    
