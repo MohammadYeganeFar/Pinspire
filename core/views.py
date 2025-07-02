@@ -44,3 +44,4 @@ def add_pin_to_board(request, pk):
         board.pins.add(pin)
         serializer = BoardSerializer(board)
         return Response(serializer.data, status.HTTP_201_CREATED)
+        

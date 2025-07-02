@@ -8,6 +8,8 @@ class PinSerializer(serializers.ModelSerializer):
 
 
 class BoardSerializer(serializers.ModelSerializer):
+    pins = PinSerializer(many=True, read_only=True)
+    
     class Meta:
         model = Board
         fields = '__all__'
