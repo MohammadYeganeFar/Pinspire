@@ -13,6 +13,9 @@
 - other:
 	- media setting for uploading images
 	- change models acording shema
+	- board and pin models shoud have owner and and board names for a user shoud be unique beacause of wishlist
+	- add create and update for nested seializers(like borad)
+	- remove following field from CustomUser
 
 اول بریم سراغ ویو ها با توجه به اندپوینت ها
 - لاگین با جی دابلیو تی رو میز
@@ -58,3 +61,10 @@ working
 working
 
 `/api/boards/<id>/pins/` | POST | Add pin to board:
+working
+
+| `/api/wishlist/` | GET | Get wishlist pins:
+need to login get fixed
+
+`/api/wishlist/<pin_id>/` | POST, DELETE | Add/remove from wishlist:
+
