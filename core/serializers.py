@@ -11,3 +11,13 @@ class BoardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Board
         fields = '__all__'
+        
+
+class AddPinToBoardSerializer(serializers.ModelSerializer):
+    name = serializers.CharField(read_only=True)
+    description = serializers.CharField(read_only=True)
+    visibility = serializers.CharField(read_only=True)
+    
+    class Meta:
+        model = Board
+        fields = ['name',  'visibility', 'pins', 'description']
