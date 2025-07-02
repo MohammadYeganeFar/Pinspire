@@ -8,9 +8,11 @@
 یژن هارو بنویسم.البته سریالایزر ها با توجه به ویو عوض میشن.
 پس مونده:
 - ویو ها (و سریالایزرها)
-- پرمیژن ها
 - عوض کردن اسم یو ار ال ها
-- مابقی جزئیات
+- پرمیژن ها
+- other:
+	- media setting for uploading images
+	- change models acording shema
 
 اول بریم سراغ ویو ها با توجه به اندپوینت ها
 - لاگین با جی دابلیو تی رو میز
@@ -21,3 +23,38 @@
 `/api/auth/register/`:
 same as /api/users/. its need some change...
 its working. hashing pw ok(using overwriting serilsizer.create()). adding following. 
+
+
+`/api/auth/login/` :
+i think that is for access and refresh tokens. I`ll go for jwt
+implemented but not  /login does not work.
+
+`/api/auth/refresh/`:
+working
+
+`/api/users/<username>/`:
+working
+
+`/api/users/me/`:
+after fixing jwt login
+
+/api/pins/`:
+it shows private pins, fixed.
+
+`/api/pins/` :
+working
+
+`/api/pins/<id>/`:
+working
+
+`/api/pins/search/?q=<query>`:
+tomarrow.after simple endpoints
+
+`/api/boards/`:
+it shows private bs, fixed
+working
+
+`/api/boards/<id>/`:
+working
+
+`/api/boards/<id>/pins/` | POST | Add pin to board:

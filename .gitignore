@@ -6,6 +6,8 @@ __pycache__/
 */migrations/*
 !*/migrations/__init__.py
 .vscode/
+pins_images/
+
 
 # C extensions
 *.so
