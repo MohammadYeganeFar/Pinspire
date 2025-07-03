@@ -83,8 +83,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 REST_FRAMEWORK = {
-    'DAFAULT_AUTHENTICATION_CLASSES': 
-        ('rest_framework_simplejwt.authentication.JWTAuthenticate'),
+    'DEFAULT_AUTHENTICATION_CLASSES': 
+        ('rest_framework_simplejwt.authentication.JWTAuthentication', )
     
 }
 

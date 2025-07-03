@@ -8,10 +8,12 @@ from core.serializers import (PinSerializer,
                                                 BoardSerializer, 
                                                 AddPinToBoardSerializer)
 from account.models import CustomUser
+from rest_framework.permissions import IsAuthenticated
 
 class PinViewSet(viewsets.ModelViewSet):
     serializer_class = PinSerializer
     queryset = Pin.objects.all()
+    permission_classes = [IsAuthenticated]
     
     def list(self, request):
         pins = Pin.objects.filter(visibility='PU')
