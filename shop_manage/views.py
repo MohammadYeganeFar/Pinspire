@@ -20,22 +20,26 @@ class ProductPagination(PageNumberPagination):
 
 class ProductViewSet(viewsets.ModelViewSet):
     serializer_class = ProductSerializer
+
     queryset = (Product.objects.all())
+
     filter_backends = [DjangoFilterBackend, 
                        SearchFilter, 
                        OrderingFilter]
+    
     filterset_class = ProductFilter
+
     search_fields = ['name','description','category__name']
+
     search_param = 'q'
+
     # ordering_fields = ['name', 'price', 'is_available', 'created_at']
     ordering_fields = '__all__'
+    
     ordering = ['name']
+
     pagination_class = ProductPagination
     
-    def list(self, request, *args, **kwargs):
-        products = self.filter_queryset(self.get_queryset())
-        serializer = self.get_serializer(products, many=True)
-        return Response(serializer.data)
 
 class CategoryViewSet(viewsets.ModelViewSet):
     serializer_class = CategorySerializer
