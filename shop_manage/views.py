@@ -18,20 +18,24 @@ class ProductPagination(PageNumberPagination):
     page_size_query_param = 'page_size'
 
 
+class CustomSearchFilter(SearchFilter):
+
+    # Using 'q' instead of 'search'
+    search_param = 'q'
+
+
 class ProductViewSet(viewsets.ModelViewSet):
     serializer_class = ProductSerializer
 
     queryset = (Product.objects.all())
 
     filter_backends = [DjangoFilterBackend, 
-                       SearchFilter, 
+                       CustomSearchFilter, 
                        OrderingFilter]
     
     filterset_class = ProductFilter
 
     search_fields = ['name','description','category__name']
-
-    search_param = 'q'
 
     # ordering_fields = ['name', 'price', 'is_available', 'created_at']
     ordering_fields = '__all__'
