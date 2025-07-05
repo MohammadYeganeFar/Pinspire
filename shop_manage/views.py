@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.filters import SearchFilter, OrderingFilter
-from rest_framework.pagination import P
+from rest_framework.pagination import PageNumberPagination
 from django_filters.rest_framework import (DjangoFilterBackend,
                                             )
 from shop_manage.serializers import (ProductSerializer, 
@@ -10,6 +10,12 @@ from shop_manage.serializers import (ProductSerializer,
                                     OrderSerializer)
 from shop_manage.models import Product, Category, Order
 from shop_manage.filters import ProductFilter
+
+
+class ProductPagination(PageNumberPagination):
+    page_size = 2
+    max_page_size = 3
+    page_size_query_param = 'page_size'
 
 
 class ProductViewSet(viewsets.ModelViewSet):
@@ -24,6 +30,7 @@ class ProductViewSet(viewsets.ModelViewSet):
     # ordering_fields = ['name', 'price', 'is_available', 'created_at']
     ordering_fields = '__all__'
     ordering = ['name']
+    pagination_class = ProductPagination
     
     def list(self, request, *args, **kwargs):
         products = self.filter_queryset(self.get_queryset())
